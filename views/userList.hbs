@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <form action="/admin/users/search" method="post">
+        <input type="text" name="query" placeholder="Search by name or email" value="{{query}}">
+        <button type="submit">Search</button>
+    </form><br>
+    <a href="/admin/users/create">Add new User</a><br>
+    <ul>
+        {{#each users}}
+            <li>Name:{{this.name}}, Age:{{this.age}}, EmailId:{{this.email}}</li>
+               <a href="/admin/users/edit/{{this.id}}">Edit</a>
+                <form action="/admin/users/delete/{{this.id}}" method="post" style="display:inline;">
+                   <button type="submit">Delete</button>
+                </form>
+        {{else}}
+            <li>No users found.</li>
+        {{/each}}
+    </ul>
+    
+    <a href="/admin/panel">Back to Admin Panel</a><br><br>
+    <a href="/admin/logout">Logout</a>
+</body>
+</html>
